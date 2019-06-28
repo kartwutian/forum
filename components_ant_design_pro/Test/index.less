@@ -1,0 +1,48 @@
+
+.map{
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+.defaultBar{
+  position: absolute;
+  z-index: 1005;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.searchBar{
+  position: absolute;
+  z-index: 1000;
+  top: 120px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.layerBtn{
+  position: absolute;
+  z-index: 1000;
+  top: 76px;
+  right: 10px;
+}
+.locateBtn{
+  position: absolute;
+  z-index: 1000;
+  bottom: 60px;
+  left: 10px;
+}
+.zoomBtn{
+  position: absolute;
+  z-index: 1000;
+  bottom: 60px;
+  right: 10px;
+}
+.myDrawer{
+  :global(.am-drawer-sidebar){
+    z-index: 2000;
+    background-color: #fff;
+  }
+  :global(.am-drawer-overlay){
+    z-index: 1500;
+  }
+}
