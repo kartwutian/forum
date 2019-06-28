@@ -23,7 +23,7 @@ class Index extends PureComponent {
     const { global } = this.props
     return (
       <Layout global={global}>
-        <div style={{height: 2000}}>about</div>
+        <div style={{height: 2000}}>login</div>
       </Layout>
     )
   }

@@ -20,12 +20,13 @@ class Index extends PureComponent {
   }
 
   render(){
+    const { global } = this.props
     return (
-      <Layout>
-        
+      <Layout global={global}>
+        <div style={{height: 2000}}>111</div>
       </Layout>
     )
   }
 }
 
-export default WithDva(({global}) => { return {...global }; })(Index);
+export default WithDva(({global}) => { return { global }; })(Index);
