@@ -1,5 +1,5 @@
 const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
-
+const { routes } = require('../config/config');
 const model = {
   namespace: 'global',
   state: {
@@ -22,32 +22,32 @@ const model = {
             {
               id: 1,
               name: '首页',
-              path: '/'
+              path: routes['index'],
             },
             {
               id: 7,
               name: '新手入门',
-              path: '/get_start',
+              path: routes['get_start'],
             },
             {
               id: 2,
               name: 'API',
-              path: '/api',
+              path: routes['api'],
             },
             {
               id: 3,
               name: '关于',
-              path: '/about',
+              path: routes['about'],
             },
             {
               id: 4,
               name: '注册',
-              path: '/register',
+              path: routes['register'],
             },
             {
               id: 5,
               name: '登录',
-              path: '/login',
+              path: routes['login'],
             },
           ],
         }

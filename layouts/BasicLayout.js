@@ -1,12 +1,17 @@
 import React, { PureComponent } from 'react';
 import { Layout, Menu, Row, Col } from 'antd';
 import Link from 'next/link';
+import { withRouter } from 'next/router';
 import classNames from 'classnames';
 import styles from './index.less';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 class Page extends PureComponent {
+
+  constructor(props) {
+    super(props);
+  };
 
   renderLogo = () => {
     const { global: { logoUrl, appName  } } = this.props
@@ -16,22 +21,22 @@ class Page extends PureComponent {
         <div>{appName}</div>
       </div>
     );
-  }
+  };
 
   renderMenus = () => {
-    const { global: { menus } } = this.props
+    const { global: { menus }, router: {pathname} } = this.props
     return (
       <Menu
         theme="light"
         mode="horizontal"
-        defaultSelectedKeys={['2']}
-        style={{ lineHeight: '64px' }}
+        selectedKeys={[pathname]}
+        style={{ lineHeight: '63px' }}
       >
         {
           menus.map(item => (
-            <Menu.Item key={item.id}>
+            <Menu.Item key={item.path}>
               <Link href={item.path}>
-                {item.name}
+                <a>{item.name}</a>
               </Link>
             </Menu.Item>
           ))
@@ -61,4 +66,4 @@ class Page extends PureComponent {
   }
 }
 
-export default Page;
+export default withRouter(Page);
