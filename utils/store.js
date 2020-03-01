@@ -1,25 +1,26 @@
-import React from 'react';
-import dva, { connect } from 'dva-no-router';
-import { Provider } from 'react-redux';
-import model from '../model/index';
+import React from "react";
+import dva, { connect } from "dva-no-router";
+import { Provider } from "react-redux";
+import model from "../model/index";
 
-const checkServer = () => Object.prototype.toString.call(global.process) === '[object process]';
+const checkServer = () =>
+  Object.prototype.toString.call(global.process) === "[object process]";
 
 // eslint-disable-next-line
-const __NEXT_DVA_STORE__ =  '__NEXT_DVA_STORE__'
+const __NEXT_DVA_STORE__ = "__NEXT_DVA_STORE__";
 
 function createDvaStore(initialState) {
   let app;
   if (initialState) {
     app = dva({
-      initialState,
+      initialState
     });
   } else {
     app = dva({});
   }
   const isArray = Array.isArray(model);
   if (isArray) {
-    model.forEach((m) => {
+    model.forEach(m => {
       app.model(m);
     });
   } else {
@@ -29,13 +30,14 @@ function createDvaStore(initialState) {
   app.start();
   // console.log(app);
   // eslint-disable-next-line
-  const store = app._store
+  const store = app._store;
   return store;
 }
 
 function getOrCreateStore(initialState) {
   const isServer = checkServer();
-  if (isServer) { // run in server
+  if (isServer) {
+    // run in server
     // console.log('server');
     return createDvaStore(initialState);
   }
@@ -51,15 +53,22 @@ function getOrCreateStore(initialState) {
 
 export default function withDva(...args) {
   return function CreateNextPage(Component) {
+    console.log(args);
     const ComponentWithDva = (props = {}) => {
+      console.log(props);
       const { store, initialProps, initialState } = props;
       const ConnectedComponent = connect(...args)(Component);
       return React.createElement(
         Provider,
         // in client side, it will init store with the initial state tranfer from server side
-        { store: store && store.dispatch ? store : getOrCreateStore(initialState) },
+        {
+          store:
+            store && store.dispatch ? store : getOrCreateStore(initialState)
+        },
         // transfer next.js's props to the page
-        React.createElement(ConnectedComponent, initialProps),
+        store
+          ? React.createElement(ConnectedComponent, initialProps)
+          : React.createElement(ConnectedComponent, props)
       );
     };
     ComponentWithDva.getInitialProps = async (props = {}) => {
@@ -74,7 +83,7 @@ export default function withDva(...args) {
       return {
         store,
         initialProps,
-        initialState: store.getState(),
+        initialState: store.getState()
       };
     };
     return ComponentWithDva;

@@ -16,6 +16,7 @@
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
     "dva-no-router": "^1.2.1",
+    "enquire.js": "^2.1.6",
     "express": "^4.16.4",
     "next": "^8.0.3",
     "prop-types": "^15.7.2",
@@ -23,8 +24,7 @@
     "react-container-query": "^0.11.0",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.8.4",
-    "react-markdown": "^4.0.6",
-    "react-media": "^1.9.2"
+    "react-markdown": "^4.0.6"
   },
   "devDependencies": {
     "@zeit/next-css": "^1.0.1",
